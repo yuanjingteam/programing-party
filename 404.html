@@ -1,13 +1,19 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Programing Party</title>
-    <link rel="icon" href="./favicon.png">
-    <link rel="manifest" href="./manifest.json">
-    <link rel="canonical" href="https://traeprograming-partydev-mainu7i9.vercel.app/">
-    <link rel="preload" href="./font/Mona-Sans.woff2" as="font" type="font/woff2" crossorigin="">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= it.title %></title>
+    <link rel="icon" href="./favicon.png" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="canonical" href="<%= it.url %>" />
+    <link
+      rel="preload"
+      href="./font/Mona-Sans.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin=""
+    />
 
     <!-- <script
       defer
@@ -16,53 +22,62 @@
     ></script> -->
 
     <!-- DNS Prefetch for external resources -->
-    <link rel="dns-prefetch" href="//github.com">
-    <link rel="dns-prefetch" href="//docs.oracle.com">
-    <link rel="dns-prefetch" href="//go.dev">
-    <link rel="dns-prefetch" href="//nodejs.org">
-    <link rel="dns-prefetch" href="//docs.python.org">
-    <link rel="dns-prefetch" href="//www.php.net">
+    <link rel="dns-prefetch" href="//github.com" />
+    <link rel="dns-prefetch" href="//docs.oracle.com" />
+    <link rel="dns-prefetch" href="//go.dev" />
+    <link rel="dns-prefetch" href="//nodejs.org" />
+    <link rel="dns-prefetch" href="//docs.python.org" />
+    <link rel="dns-prefetch" href="//www.php.net" />
 
     <!-- Preconnect to critical external domains -->
-    <link rel="preconnect" href="https://github.com" crossorigin>
+    <link rel="preconnect" href="https://github.com" crossorigin />
 
     <!-- Primary Meta Tags -->
-    <meta name="title" content="Programing Party">
-    <meta name="description" content="并排比较编程语言：Java, Go, Node.js, Python, PHP。查看语法差异、功能和代码示例。">
-    <meta name="keywords" content="编程语言, Java, Go, Node.js, Python, PHP, 语言对比, 代码对比, 语法差异, 后端开发">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta name="googlebot" content="index, follow">
-    <meta name="bingbot" content="index, follow">
+    <meta name="title" content="<%= it.title %>" />
+    <meta name="description" content="<%= it.description %>" />
+    <meta name="keywords" content="<%= it.keywords %>" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://traeprograming-partydev-mainu7i9.vercel.app/">
-    <meta property="og:title" content="Programing Party">
-    <meta property="og:description" content="并排比较编程语言：Java, Go, Node.js, Python, PHP。查看语法差异、功能和代码示例。">
-    <meta property="og:image" content="https://traeprograming-partydev-mainu7i9.vercel.app/banner2.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Programing Party - 编程语言对比">
-    <meta property="og:site_name" content="Programing Party">
-    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= it.url %>" />
+    <meta property="og:title" content="<%= it.title %>" />
+    <meta property="og:description" content="<%= it.description %>" />
+    <meta property="og:image" content="<%= it.image %>" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="<%= it.title %> - 编程语言对比" />
+    <meta property="og:site_name" content="Programing Party" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://traeprograming-partydev-mainu7i9.vercel.app/">
-    <meta property="twitter:title" content="Programing Party">
-    <meta property="twitter:description" content="并排比较编程语言：Java, Go, Node.js, Python, PHP。查看语法差异、功能和代码示例。">
-    <meta property="twitter:image" content="https://traeprograming-partydev-mainu7i9.vercel.app/banner2.png">
-    <meta property="twitter:image:alt" content="Programing Party - 编程语言对比">
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="<%= it.url %>" />
+    <meta property="twitter:title" content="<%= it.title %>" />
+    <meta property="twitter:description" content="<%= it.description %>" />
+    <meta property="twitter:image" content="<%= it.image %>" />
+    <meta
+      property="twitter:image:alt"
+      content="<%= it.title %> - 编程语言对比"
+    />
 
     <!-- Additional SEO Meta Tags -->
-    <meta name="theme-color" content="#111827">
-    <meta name="msapplication-TileColor" content="#111827">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Programing Party">
-    <meta name="application-name" content="Programing Party">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#111827" />
+    <meta name="msapplication-TileColor" content="#111827" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Programing Party" />
+    <meta name="application-name" content="Programing Party" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -70,8 +85,8 @@
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "Programing Party",
-        "description": "并排比较编程语言：Java, Go, Node.js, Python, PHP。查看语法差异、功能和代码示例。",
-        "url": "https://traeprograming-partydev-mainu7i9.vercel.app/",
+        "description": "<%= it.description %>",
+        "url": "<%= it.url %>",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "Web Browser",
         "offers": {
@@ -79,7 +94,7 @@
           "price": "0",
           "priceCurrency": "USD"
         },
-        "keywords": "编程语言, Java, Go, Node.js, Python, PHP, 语言对比, 代码对比, 语法差异, 后端开发",
+        "keywords": "<%= it.keywords %>",
         "inLanguage": "en-US",
         "isAccessibleForFree": true,
         "browserRequirements": "Requires JavaScript. Requires HTML5.",
@@ -90,7 +105,7 @@
           "@type": "ItemList",
           "name": "Programming Languages Comparison",
           "description": "A comprehensive comparison of popular programming languages",
-          "numberOfItems": "5",
+          "numberOfItems": "<%= it.frameworkCount || '5+' %>",
           "itemListElement": [
             {
               "@type": "SoftwareApplication",
@@ -155,7 +170,7 @@
         color: #fff;
       }
     </style>
-    <script type="module" crossorigin src="/programing-party/assets/index-CH-E-wBb.js"></script>
+    <script type="module" crossorigin src="/programing-party/assets/index-DoX8cL-U.js"></script>
     <link rel="modulepreload" crossorigin href="/programing-party/assets/vendor-D8xBbip6.js">
     <link rel="modulepreload" crossorigin href="/programing-party/assets/frameworks-DMMcA2Rh.js">
     <link rel="stylesheet" crossorigin href="/programing-party/assets/index-B266qWhF.css">
@@ -163,13 +178,23 @@
 
   <body>
     <div id="app" class="min-h-screen"></div>
-    <footer class="bg-[var(--aside-bg)] border-t border-[var(--border-color)] transition-colors duration-300">
+    <footer
+  class="bg-[var(--aside-bg)] border-t border-[var(--border-color)] transition-colors duration-300"
+>
   <div class="mx-auto max-w-7xl px-6 py-8 lg:px-6">
     <div class="xl:grid xl:grid-cols-3 xl:gap-8">
       <div class="space-y-8">
         <div class="flex items-center space-x-2">
-          <img class="h-8" src="./popper.svg" alt="Programing Party" width="32" height="32">
-          <span class="text-xl font-bold text-[var(--text-color)]">Programing Party</span>
+          <img
+            class="h-8"
+            src="./popper.svg"
+            alt="Programing Party"
+            width="32"
+            height="32"
+          />
+          <span class="text-xl font-bold text-[var(--text-color)]"
+            >Programing Party</span
+          >
         </div>
         <p class="text-sm leading-6 text-[var(--text-color)] opacity-70">
           对比不同编程语言的语法和特性，帮助开发者快速学习新语言。
@@ -178,60 +203,104 @@
       <div class="mt-10 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
         <div class="md:grid md:grid-cols-2 md:gap-8">
                     <div>
-            <h3 class="text-sm font-semibold leading-6 text-[var(--text-color)] mb-6">
+            <h3
+              class="text-sm font-semibold leading-6 text-[var(--text-color)] mb-6"
+            >
               新旧对决            </h3>
             <ul role="list" class="space-y-4">
                             <li>
-                <a href="/?f=java-go" class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity">Java (1995) vs Go (2009)</a>
+                <a
+                  href="/?f=java-go"
+                  class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity"
+                  >Java (1995) vs Go (2009)</a
+                >
               </li>
                             <li>
-                <a href="/?f=php-nodejs" class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity">PHP (1995) vs Node.js (2009)</a>
+                <a
+                  href="/?f=php-nodejs"
+                  class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity"
+                  >PHP (1995) vs Node.js (2009)</a
+                >
               </li>
                           </ul>
           </div>
                     <div>
-            <h3 class="text-sm font-semibold leading-6 text-[var(--text-color)] mb-6">
+            <h3
+              class="text-sm font-semibold leading-6 text-[var(--text-color)] mb-6"
+            >
               热门语言            </h3>
             <ul role="list" class="space-y-4">
                             <li>
-                <a href="/?f=python-java" class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity">Python vs Java</a>
+                <a
+                  href="/?f=python-java"
+                  class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity"
+                  >Python vs Java</a
+                >
               </li>
                             <li>
-                <a href="/?f=nodejs-go" class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity">Node.js vs Go</a>
+                <a
+                  href="/?f=nodejs-go"
+                  class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity"
+                  >Node.js vs Go</a
+                >
               </li>
                             <li>
-                <a href="/?f=python-nodejs" class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity">Python vs Node.js</a>
+                <a
+                  href="/?f=python-nodejs"
+                  class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity"
+                  >Python vs Node.js</a
+                >
               </li>
                           </ul>
           </div>
                     <div>
-            <h3 class="text-sm font-semibold leading-6 text-[var(--text-color)] mb-6">
+            <h3
+              class="text-sm font-semibold leading-6 text-[var(--text-color)] mb-6"
+            >
               不同范式            </h3>
             <ul role="list" class="space-y-4">
                             <li>
-                <a href="/?f=java-go" class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity">Java (OOP) vs Go (Structs)</a>
+                <a
+                  href="/?f=java-go"
+                  class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity"
+                  >Java (OOP) vs Go (Structs)</a
+                >
               </li>
                             <li>
-                <a href="/?f=python-go" class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity">Python (Dynamic) vs Go (Static)</a>
+                <a
+                  href="/?f=python-go"
+                  class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity"
+                  >Python (Dynamic) vs Go (Static)</a
+                >
               </li>
                           </ul>
           </div>
                   </div>
         <div class="md:grid md:grid-cols-1 md:gap-8">
           <div class="mt-10 md:mt-0">
-            <h3 class="text-sm font-semibold leading-6 text-[var(--text-color)] mb-6">
+            <h3
+              class="text-sm font-semibold leading-6 text-[var(--text-color)] mb-6"
+            >
               资源
             </h3>
             <ul role="list" class="space-y-4">
               <li>
-                <a href="https://github.com/yuanjingteam/programing-party" class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity" target="_blank" rel="noopener noreferrer">GitHub 仓库</a>
+                <a
+                  href="https://github.com/yuanjingteam/programing-party"
+                  class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >GitHub 仓库</a
+                >
               </li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-    <div class="mt-8 border-t border-[var(--border-color)] pt-6 sm:mt-10 lg:mt-12 transition-colors duration-300">
+    <div
+      class="mt-8 border-t border-[var(--border-color)] pt-6 sm:mt-10 lg:mt-12 transition-colors duration-300"
+    >
       <p class="text-xs leading-5 text-[var(--text-color)] opacity-60">
         &copy; 2026 Programing Party. All rights reserved.
       </p>
