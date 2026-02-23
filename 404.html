@@ -170,25 +170,30 @@
         color: #fff;
       }
     </style>
-    <script type="module" crossorigin src="/programing-party/assets/index-d5M6_ytx.js"></script>
+    <script type="module" crossorigin src="/programing-party/assets/index-CP3t6V3U.js"></script>
     <link rel="modulepreload" crossorigin href="/programing-party/assets/vendor-B3vqtgXR.js">
     <link rel="modulepreload" crossorigin href="/programing-party/assets/frameworks-DMMcA2Rh.js">
     <link rel="stylesheet" crossorigin href="/programing-party/assets/index-B266qWhF.css">
   
     <script>
-      // GitHub Pages SPA redirect - 恢复路径
+      // GitHub Pages SPA redirect - 恢复路径（已经是去掉 BASE_PATH 的路径）
       (function() {
         var redirect = sessionStorage.redirect;
         delete sessionStorage.redirect;
-        if (redirect && redirect !== location.href) {
+        if (redirect && redirect !== location.pathname + location.search + location.hash) {
           history.replaceState(null, null, redirect);
         }
       })();
     </script>
   
     <script>
-      // GitHub Pages SPA redirect - 存储完整路径并重定向到根路径
-      sessionStorage.redirect = location.pathname + location.search + location.hash;
+      // GitHub Pages SPA redirect - 存储去掉 BASE_PATH 后的路径
+      var basePath = '/programing-party';
+      var fullPath = location.pathname + location.search + location.hash;
+      var pathWithoutBase = fullPath.startsWith(basePath) 
+        ? fullPath.slice(basePath.length) || '/'
+        : fullPath;
+      sessionStorage.redirect = pathWithoutBase;
       location.replace(location.origin + '/programing-party/');
     </script>
   </head>
