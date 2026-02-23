@@ -1,0 +1,103 @@
+@import "tailwindcss";
+@source "../build-scripts";
+@plugin "@iconify/tailwind4";
+@plugin "@iconify/tailwind4" {
+  prefix: "iconify";
+  prefixes: ph, simple-icons;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  :root {
+    --bg-color: rgb(17 24 39);
+    --text-color: #ffffff;
+    --border-color: rgb(55 65 81);
+    --header-bg: rgba(17, 24, 39, 0.8);
+    --aside-bg: #0d1117;
+
+    /* 代码块相关颜色 - 深黑色 */
+    --code-bg: #0d1117;
+    --code-tab-bg: #0d1117;
+    --code-tab-text: #e5e7eb;
+    --code-text: #e5e7eb;
+
+    /* 按钮相关颜色 */
+    --button-bg: rgb(31 41 55);
+    --button-bg-hover: rgb(55 65 81);
+    --button-border: rgb(75 85 99);
+    --button-text: #e5e7eb;
+
+    /* 激活状态颜色 */
+    --button-active-bg: rgb(30 58 138);
+    --button-active-border: rgb(59 130 246);
+    --button-active-text: rgb(147 197 253);
+  }
+
+  :root:not(.dark) {
+    --bg-color: #ffffff;
+    --text-color: #111827;
+    --border-color: #e5e7eb;
+    --header-bg: rgba(255, 255, 255, 0.8);
+    --aside-bg: #f9fafb;
+
+    /* 代码块相关颜色 */
+    --code-bg: #f3f4f6;
+    --code-tab-bg: #e5e7eb;
+    --code-tab-text: #374151;
+    --code-text: #1f2937;
+
+    /* 按钮相关颜色 */
+    --button-bg: #ffffff;
+    --button-bg-hover: #f9fafb;
+    --button-border: #d1d5db;
+    --button-text: #374151;
+
+    /* 激活状态颜色 */
+    --button-active-bg: #eff6ff;
+    --button-active-border: #3b82f6;
+    --button-active-text: #1d4ed8;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+  }
+
+  /* 修复 pre 标签的背景色 */
+  pre {
+    background-color: var(--code-bg) !important;
+    color: var(--code-text) !important;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+  }
+
+  /* 修复 code 标签的颜色 */
+  pre code {
+    background-color: transparent !important;
+    color: inherit !important;
+  }
+}
+
+@supports (backdrop-filter: blur(10px)) {
+  [class*="bg-"].backdrop-blur {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+.no-scroll {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.no-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}

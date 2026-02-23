@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= it.title %></title>
+    <link rel="icon" href="/favicon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="canonical" href="<%= it.url %>" />
+    <link
+      rel="preload"
+      href="/font/Mona-Sans.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin=""
+    />
+
+    <!-- <script
+      defer
+      src="/stats/script.js"
+      data-website-id="8b1364c9-f731-40a7-8bd4-4cb8804e3e07"
+    ></script> -->
+
+    <!-- DNS Prefetch for external resources -->
+    <link rel="dns-prefetch" href="//github.com" />
+    <link rel="dns-prefetch" href="//docs.oracle.com" />
+    <link rel="dns-prefetch" href="//go.dev" />
+    <link rel="dns-prefetch" href="//nodejs.org" />
+    <link rel="dns-prefetch" href="//docs.python.org" />
+    <link rel="dns-prefetch" href="//www.php.net" />
+
+    <!-- Preconnect to critical external domains -->
+    <link rel="preconnect" href="https://github.com" crossorigin />
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="<%= it.title %>" />
+    <meta name="description" content="<%= it.description %>" />
+    <meta name="keywords" content="<%= it.keywords %>" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= it.url %>" />
+    <meta property="og:title" content="<%= it.title %>" />
+    <meta property="og:description" content="<%= it.description %>" />
+    <meta property="og:image" content="<%= it.image %>" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="<%= it.title %> - 编程语言对比" />
+    <meta property="og:site_name" content="Programing Party" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="<%= it.url %>" />
+    <meta property="twitter:title" content="<%= it.title %>" />
+    <meta property="twitter:description" content="<%= it.description %>" />
+    <meta property="twitter:image" content="<%= it.image %>" />
+    <meta
+      property="twitter:image:alt"
+      content="<%= it.title %> - 编程语言对比"
+    />
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#111827" />
+    <meta name="msapplication-TileColor" content="#111827" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Programing Party" />
+    <meta name="application-name" content="Programing Party" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Programing Party",
+        "description": "<%= it.description %>",
+        "url": "<%= it.url %>",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "keywords": "<%= it.keywords %>",
+        "inLanguage": "en-US",
+        "isAccessibleForFree": true,
+        "browserRequirements": "Requires JavaScript. Requires HTML5.",
+        "softwareVersion": "2.0.0",
+        "datePublished": "2024-01-01",
+        "dateModified": "2024-12-01",
+        "mainEntity": {
+          "@type": "ItemList",
+          "name": "Programming Languages Comparison",
+          "description": "A comprehensive comparison of popular programming languages",
+          "numberOfItems": "<%= it.frameworkCount || '5+' %>",
+          "itemListElement": [
+            {
+              "@type": "SoftwareApplication",
+              "name": "Java",
+              "description": "A high-level, class-based, object-oriented programming language",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Cross-platform"
+            },
+            {
+              "@type": "SoftwareApplication",
+              "name": "Go",
+              "description": "A statically typed, compiled programming language designed at Google",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Cross-platform"
+            },
+            {
+              "@type": "SoftwareApplication",
+              "name": "Node.js",
+              "description": "A JavaScript runtime built on Chrome's V8 JavaScript engine",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Cross-platform"
+            },
+            {
+              "@type": "SoftwareApplication",
+              "name": "Python",
+              "description": "A high-level, general-purpose programming language",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Cross-platform"
+            },
+            {
+              "@type": "SoftwareApplication",
+              "name": "PHP",
+              "description": "A general-purpose scripting language geared towards web development",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Cross-platform"
+            }
+          ]
+        }
+      }
+    </script>
+
+    <style>
+      @font-face {
+        font-family: "Mona Sans";
+        src:
+          url("/font/Mona-Sans.woff2") format("woff2 supports variations"),
+          url("/font/Mona-Sans.woff2") format("woff2-variations");
+        font-weight: 400 500 600 700 800;
+        font-stretch: 75% 125%;
+        font-display: swap;
+      }
+
+      :root {
+        /* bg-gray-900 */
+        --bg-color: rgb(17 24 39);
+        color-scheme: dark;
+      }
+
+      html {
+        font-family: "Mona Sans";
+        background-color: var(--bg-color);
+        color: #fff;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app" class="min-h-screen"></div>
+    <!--template:footer-->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

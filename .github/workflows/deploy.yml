@@ -1,0 +1,44 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Setup Node.js ⚙️
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install dependencies 🔧
+        run: pnpm install --frozen-lockfile
+
+      - name: Build 🏗️
+        run: pnpm build
+        env:
+          # Assuming the repo name is programing-party-main or similar.
+          # GitHub Pages usually deploys to /repo-name/
+          # If custom domain, it might be /.
+          # Using dynamic repo name extraction is safer.
+          BASE_URL: /${{ github.event.repository.name }}/
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist

@@ -1,0 +1,76 @@
+<footer
+  class="bg-[var(--aside-bg)] border-t border-[var(--border-color)] transition-colors duration-300"
+>
+  <div class="mx-auto max-w-7xl px-6 py-8 lg:px-6">
+    <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+      <div class="space-y-8">
+        <div class="flex items-center space-x-2">
+          <img
+            class="h-8"
+            src="/popper.svg"
+            alt="Programing Party"
+            width="32"
+            height="32"
+          />
+          <span class="text-xl font-bold text-[var(--text-color)]"
+            >Programing Party</span
+          >
+        </div>
+        <p class="text-sm leading-6 text-[var(--text-color)] opacity-70">
+          对比不同编程语言的语法和特性，帮助开发者快速学习新语言。
+        </p>
+      </div>
+      <div class="mt-10 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+        <div class="md:grid md:grid-cols-2 md:gap-8">
+          <% it.navigations.forEach(function(nav) { %>
+          <div>
+            <h3
+              class="text-sm font-semibold leading-6 text-[var(--text-color)] mb-6"
+            >
+              <%= nav.title %>
+            </h3>
+            <ul role="list" class="space-y-4">
+              <% nav.links.forEach(function(link) { %>
+              <li>
+                <a
+                  href="<%= link.url %>"
+                  class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity"
+                  ><%= link.name %></a
+                >
+              </li>
+              <% }) %>
+            </ul>
+          </div>
+          <% }) %>
+        </div>
+        <div class="md:grid md:grid-cols-1 md:gap-8">
+          <div class="mt-10 md:mt-0">
+            <h3
+              class="text-sm font-semibold leading-6 text-[var(--text-color)] mb-6"
+            >
+              资源
+            </h3>
+            <ul role="list" class="space-y-4">
+              <li>
+                <a
+                  href="https://github.com/yuanjingteam/programing-party"
+                  class="text-sm leading-6 text-[var(--text-color)] opacity-70 hover:opacity-100 transition-opacity"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >GitHub 仓库</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 border-t border-[var(--border-color)] pt-6 sm:mt-10 lg:mt-12 transition-colors duration-300"
+    >
+      <p class="text-xs leading-5 text-[var(--text-color)] opacity-60">
+        &copy; 2026 Programing Party. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
