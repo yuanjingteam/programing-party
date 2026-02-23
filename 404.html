@@ -170,13 +170,12 @@
         color: #fff;
       }
     </style>
-    <script type="module" crossorigin src="/programing-party/assets/index-BHf7bQ9z.js"></script>
-    <link rel="modulepreload" crossorigin href="/programing-party/assets/vendor-B3vqtgXR.js">
-    <link rel="modulepreload" crossorigin href="/programing-party/assets/frameworks-DMMcA2Rh.js">
-    <link rel="stylesheet" crossorigin href="/programing-party/assets/index-B266qWhF.css">
+    <script type="module" crossorigin src="/programing-party/assets/index-C7mldD9D.js"></script>
+    <link rel="modulepreload" crossorigin href="/programing-party/assets/vendor-Cfcpjfc2.js">
+    <link rel="stylesheet" crossorigin href="/programing-party/assets/index-FKMvOv_b.css">
   
     <script>
-      // GitHub Pages SPA redirect - 恢复路径（已经是去掉 BASE_PATH 的路径）
+      // GitHub Pages SPA redirect - 恢复路径
       (function() {
         var redirect = sessionStorage.redirect;
         delete sessionStorage.redirect;
@@ -187,13 +186,8 @@
     </script>
   
     <script>
-      // GitHub Pages SPA redirect - 存储去掉 BASE_PATH 后的路径
-      var basePath = '/programing-party';
-      var fullPath = location.pathname + location.search + location.hash;
-      var pathWithoutBase = fullPath.startsWith(basePath) 
-        ? fullPath.slice(basePath.length) || '/'
-        : fullPath;
-      sessionStorage.redirect = pathWithoutBase;
+      // GitHub Pages SPA redirect - 存储完整路径并重定向
+      sessionStorage.redirect = location.pathname + location.search + location.hash;
       location.replace(location.origin + '/programing-party/');
     </script>
   </head>
