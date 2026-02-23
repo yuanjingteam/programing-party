@@ -83,7 +83,7 @@ async function parseContentDir(): Promise<Section[]> {
       for (const fw of frameworks) {
         const fwPath = path.join(subDirPath, fw);
         const fileNames = await fs.readdir(fwPath).catch(() => []);
-        const files: File[] = fileNames.map((fileName) => ({
+        const files: File[] = fileNames.map((fileName: string) => ({
           path: path.join(fwPath, fileName),
           fileName,
           ext: path.extname(fileName).slice(1),

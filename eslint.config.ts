@@ -5,6 +5,7 @@ import svelte from "eslint-plugin-svelte";
 import globals from "globals";
 import { fileURLToPath } from "node:url";
 import ts from "typescript-eslint";
+// @ts-expect-error - svelte.config.js doesn't have type definitions
 import svelteConfig from "./svelte.config";
 import oxlint from "eslint-plugin-oxlint";
 

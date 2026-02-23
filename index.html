@@ -4,12 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title><%= it.title %></title>
-    <link rel="icon" href="/favicon.png" />
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="./favicon.png" />
+    <link rel="manifest" href="./manifest.json" />
     <link rel="canonical" href="<%= it.url %>" />
     <link
       rel="preload"
-      href="/font/Mona-Sans.woff2"
+      href="./font/Mona-Sans.woff2"
       as="font"
       type="font/woff2"
       crossorigin=""
@@ -151,8 +151,8 @@
       @font-face {
         font-family: "Mona Sans";
         src:
-          url("/font/Mona-Sans.woff2") format("woff2 supports variations"),
-          url("/font/Mona-Sans.woff2") format("woff2-variations");
+          url("./font/Mona-Sans.woff2") format("woff2 supports variations"),
+          url("./font/Mona-Sans.woff2") format("woff2-variations");
         font-weight: 400 500 600 700 800;
         font-stretch: 75% 125%;
         font-display: swap;
@@ -175,6 +175,6 @@
   <body>
     <div id="app" class="min-h-screen"></div>
     <!--template:footer-->
-    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="./src/main.js"></script>
   </body>
 </html>

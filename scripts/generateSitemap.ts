@@ -98,7 +98,7 @@ function generateFrameworkCombinations(): string[] {
 }
 
 async function generateSitemap(): Promise<void> {
-  const baseUrl = "https://programing-party.com";
+  const baseUrl = "https://yuanjingteam.github.io/programing-party/";
   const currentDate = new Date().toISOString().split("T")[0];
 
   const urls: SitemapUrl[] = generateFrameworkCombinations().map((loc) => ({

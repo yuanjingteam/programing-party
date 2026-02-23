@@ -1,5 +1,5 @@
 <script lang="ts">
-  import createLocaleStorage from "../lib/createLocaleStorage";
+  import { createLocalStorage } from "../lib/createLocaleStorage.ts";
 
   interface StarCountStorageData {
     value: string;
@@ -16,7 +16,7 @@
   const REPOSITORY_PATH = "yuanjingteam/programing-party";
   const STAR_COUNT_EXPIRES_IN_MS = 1000 * 60 * 5; // Shields.io caches for 5-15 minutes
 
-  const starCountStorage = createLocaleStorage("github-star-count-v2", {
+  const starCountStorage = createLocalStorage("github-star-count-v2", {
     value: "0",
     fetchedAt: 0,
   });

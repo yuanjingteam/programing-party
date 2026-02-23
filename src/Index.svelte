@@ -204,7 +204,6 @@
   $effect(() => {
     // If root, redirect to first section
     if (!activeSectionDirName && sections.length > 0) {
-      // @ts-ignore
       navigate("/:sectionId", {
         params: { sectionId: sections[0].sectionDirName },
         replace: true,
@@ -219,7 +218,6 @@
         (s) => s.sectionDirName === activeSectionDirName,
       );
       if (firstSnippet) {
-        // @ts-ignore
         navigate("/:sectionId/:snippetId", {
           params: {
             sectionId: activeSectionDirName,
@@ -393,7 +391,7 @@
                 data-testid="empty-state-message"
               >
                 <img
-                  src="/popper.svg"
+                  src="./popper.svg"
                   alt="Programing Party logo"
                   class="size-6"
                   width="24"
@@ -401,7 +399,7 @@
                 />
                 <span> 请选择一个框架以查看代码片段 </span>
                 <img
-                  src="/popper.svg"
+                  src="./popper.svg"
                   alt="Programing Party logo"
                   class="size-6"
                   width="24"

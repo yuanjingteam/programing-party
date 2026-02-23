@@ -14,15 +14,13 @@ export async function highlightAngularComponent(
 
   let codeHighlighted = "";
   if (templateCode) {
-    const componentWithEmptyTemplate =
-      removeAngularTemplateContent(fileContent);
     const templateCodeHighlighted = await codeToHighlightCodeHtml(
       templateCode,
       "html",
     );
 
     const componentWithoutTemplateHighlighted = await codeToHighlightCodeHtml(
-      componentWithEmptyTemplate,
+      removeAngularTemplateContent(fileContent),
       fileExt,
     );
 
