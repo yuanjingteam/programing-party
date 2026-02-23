@@ -2,23 +2,27 @@
   "name": "Programing Party - 编程语言对比",
   "short_name": "Programing Party",
   "description": "并排比较编程语言：Java, Go, Node.js, Python, PHP。查看语法差异、功能和代码示例。",
-  "start_url": "/",
+  "start_url": "/programing-party/",
   "display": "standalone",
   "background_color": "#111827",
   "theme_color": "#111827",
   "orientation": "portrait-primary",
-  "scope": "/",
+  "scope": "/programing-party/",
   "lang": "zh-CN",
-  "categories": ["developer", "productivity", "utilities"],
+  "categories": [
+    "developer",
+    "productivity",
+    "utilities"
+  ],
   "icons": [
     {
-      "src": "/favicon.png",
+      "src": "/programing-party/favicon.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/favicon.png",
+      "src": "/programing-party/favicon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -26,7 +30,7 @@
   ],
   "screenshots": [
     {
-      "src": "/banner2.png",
+      "src": "/programing-party/banner2.png",
       "sizes": "1200x630",
       "type": "image/png",
       "form_factor": "wide",
@@ -38,10 +42,10 @@
       "name": "Java vs Python",
       "short_name": "Java vs Python",
       "description": "Compare Java and Python",
-      "url": "/?f=java,python",
+      "url": "/programing-party/?f=java,python",
       "icons": [
         {
-          "src": "/favicon.png",
+          "src": "/programing-party/favicon.png",
           "sizes": "192x192"
         }
       ]
@@ -50,10 +54,10 @@
       "name": "Go vs Java",
       "short_name": "Go vs Java",
       "description": "Compare Go and Java",
-      "url": "/?f=go,java",
+      "url": "/programing-party/?f=go,java",
       "icons": [
         {
-          "src": "/favicon.png",
+          "src": "/programing-party/favicon.png",
           "sizes": "192x192"
         }
       ]
@@ -62,10 +66,10 @@
       "name": "Node.js vs Python",
       "short_name": "Node.js vs Python",
       "description": "Compare Node.js and Python",
-      "url": "/?f=nodejs,python",
+      "url": "/programing-party/?f=nodejs,python",
       "icons": [
         {
-          "src": "/favicon.png",
+          "src": "/programing-party/favicon.png",
           "sizes": "192x192"
         }
       ]
