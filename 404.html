@@ -170,14 +170,13 @@
         color: #fff;
       }
     </style>
-    <script type="module" crossorigin src="/programing-party/assets/index-DihVHvZA.js"></script>
+    <script type="module" crossorigin src="/programing-party/assets/index-ZnvlP6WJ.js"></script>
     <link rel="modulepreload" crossorigin href="/programing-party/assets/vendor-D8xBbip6.js">
     <link rel="modulepreload" crossorigin href="/programing-party/assets/frameworks-DMMcA2Rh.js">
     <link rel="stylesheet" crossorigin href="/programing-party/assets/index-B266qWhF.css">
   
     <script>
-      // GitHub Pages SPA redirect hack
-      // 将 404 页面的路径重定向到 index.html，并保留路径信息
+      // GitHub Pages SPA redirect - 恢复路径
       (function() {
         var redirect = sessionStorage.redirect;
         delete sessionStorage.redirect;
@@ -188,10 +187,10 @@
     </script>
   
     <script>
-      // Store the path for redirect
+      // GitHub Pages SPA redirect - 存储路径并重定向
       sessionStorage.redirect = location.href;
+      location.replace(location.origin + '/programing-party/');
     </script>
-    <meta http-equiv="refresh" content="0;URL='/programing-party/'">
   </head>
 
   <body>
