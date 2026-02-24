@@ -1,5 +1,10 @@
 # Programing Party
 
+## 在线访问
+
+- GitHub Pages: https://yuanjingteam.github.io/programing-party/
+- Vercel: https://traeprograming-partydev-mainu7i9.vercel.app/
+
 ## 是什么
 
 Programing Party 是一个「语言对比」站点：同一个知识点（变量、循环、条件判断、函数……）在不同语言下如何写，直接并排展示，帮助你用最短时间建立“语法地图”。
