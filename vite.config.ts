@@ -3,7 +3,6 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { Eta } from "eta";
-import { minify as htmlMinify } from "html-minifier-terser";
 import { frameworks } from "./frameworks";
 import pluginGenerateFrameworkContent from "./build-scripts/generateContentVitePlugin";
 import generateSitemap from "./scripts/generateSitemap";
@@ -81,7 +80,6 @@ export default defineConfig({
     generateHtmlPagesPlugin([
       {
         outputPath: "index.html",
-        template: "dist/index.html",
         templateData: {
           ...templateDataDefaults,
           navigations: footerNavigation,
@@ -89,7 +87,6 @@ export default defineConfig({
       },
       {
         outputPath: "404.html",
-        template: "dist/index.html",
         templateData: {
           ...templateDataDefaults,
           navigations: footerNavigation,
@@ -117,7 +114,7 @@ export default defineConfig({
     minify: "terser",
     terserOptions: {
       compress: {
-        drop_console: true,
+        drop_console: false, // 暂时保留 console 用于调试
         drop_debugger: true,
       },
     },
@@ -189,24 +186,108 @@ async function generateHtmlPagesPlugin(pages: unknown[]) {
       // Generate sitemap
       await generateSitemap();
 
-      for (const page of pages) {
-        const template =
-          (page as { template?: string }).template || "index.html";
-        const templateData =
-          (page as { templateData?: unknown }).templateData || {};
-        const templatePath = path.join(import.meta.dirname, template);
-        const outputPath = path.join(
-          import.meta.dirname,
-          "dist",
-          (page as { outputPath: string }).outputPath,
+      // Update manifest.json with correct base path
+      const manifestPath = path.join(
+        import.meta.dirname,
+        "dist",
+        "manifest.json",
+      );
+      const baseUrl = process.env.BASE_URL || "/";
+
+      try {
+        const manifestContent = await fs.readFile(manifestPath, "utf8");
+        const manifest = JSON.parse(manifestContent);
+
+        // Update all absolute paths in manifest
+        const updatePath = (p: string) =>
+          p.startsWith("/") && !p.startsWith(baseUrl)
+            ? `${baseUrl.replace(/\/$/, "")}${p}`
+            : p;
+
+        if (manifest.start_url)
+          manifest.start_url = updatePath(manifest.start_url);
+        if (manifest.scope) manifest.scope = updatePath(manifest.scope);
+        if (manifest.icons) {
+          manifest.icons = manifest.icons.map((icon: any) => ({
+            ...icon,
+            src: updatePath(icon.src),
+          }));
+        }
+        if (manifest.screenshots) {
+          manifest.screenshots = manifest.screenshots.map(
+            (screenshot: any) => ({
+              ...screenshot,
+              src: updatePath(screenshot.src),
+            }),
+          );
+        }
+        if (manifest.shortcuts) {
+          manifest.shortcuts = manifest.shortcuts.map((shortcut: any) => ({
+            ...shortcut,
+            url: updatePath(shortcut.url),
+            icons: shortcut.icons?.map((icon: any) => ({
+              ...icon,
+              src: updatePath(icon.src),
+            })),
+          }));
+        }
+
+        await fs.writeFile(
+          manifestPath,
+          JSON.stringify(manifest, null, 2),
+          "utf8",
+        );
+      } catch (error) {
+        console.error("Failed to update manifest.json:", error);
+      }
+
+      // Generate 404.html with redirect script for SPA routing
+      const indexPath = path.join(import.meta.dirname, "dist", "index.html");
+      const notFoundPath = path.join(import.meta.dirname, "dist", "404.html");
+
+      try {
+        let indexContent = await fs.readFile(indexPath, "utf8");
+
+        // Add redirect script to index.html for restoring the path
+        const indexRedirectScript = `
+    <script>
+      // GitHub Pages SPA redirect - 恢复路径
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.pathname + location.search + location.hash) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>`;
+
+        // Insert script before closing head tag in index.html
+        indexContent = indexContent.replace(
+          "</head>",
+          indexRedirectScript + "\n  </head>",
         );
 
-        const templateContent = await fs.readFile(templatePath, "utf8");
-        const compiledHtml = eta.renderString(templateContent, templateData);
-        const minifiedHtml = await htmlMinify(compiledHtml);
-        const dirPath = path.dirname(outputPath);
-        await fs.mkdir(dirPath, { recursive: true });
-        await fs.writeFile(outputPath, minifiedHtml, "utf8");
+        // Write back to index.html
+        await fs.writeFile(indexPath, indexContent, "utf8");
+
+        // For 404.html, add script to store the path and redirect
+        const notFoundScript = `
+    <script>
+      // GitHub Pages SPA redirect - 存储完整路径并重定向
+      sessionStorage.redirect = location.pathname + location.search + location.hash;
+      location.replace(location.origin + '/programing-party/');
+    </script>`;
+
+        // Create 404.html with redirect script
+        let notFoundContent = await fs.readFile(indexPath, "utf8");
+        notFoundContent = notFoundContent.replace(
+          "</head>",
+          notFoundScript + "\n  </head>",
+        );
+
+        await fs.writeFile(notFoundPath, notFoundContent, "utf8");
+      } catch (error) {
+        console.error("Failed to generate 404.html:", error);
       }
     },
   };

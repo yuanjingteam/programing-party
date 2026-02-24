@@ -21,7 +21,7 @@ jobs:
       - name: Build 🏗️
         run: pnpm build
         env:
-          BASE_URL: /${{ github.event.repository.name }}/
+          BASE_URL: /programing-party/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4

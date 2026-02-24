@@ -17,7 +17,7 @@
     FRAMEWORK_IDS_FROM_URL_KEY,
     FRAMEWORK_SEPARATOR,
   } from "./constants.ts";
-  import { searchParams, route, navigate } from "./router.ts";
+  import { searchParams, route, navigate, BASE_PATH } from "./router.ts";
 
   interface File {
     fileName: string;
@@ -35,7 +35,7 @@
   }
 
   const MAX_FRAMEWORK_NOBONUS = 9;
-  const DEFAULT_FRAMEWORKS = frameworks.map((f) => f.id);
+  const DEFAULT_FRAMEWORKS = ["nodejs", "php", "go", "java", "python"];
   const FRAMEWORKS_BONUS = frameworks.slice(MAX_FRAMEWORK_NOBONUS);
   const frameworkIdsStorage = createLocalStorage<string[]>(
     "framework_display",
@@ -187,8 +187,12 @@
   );
 
   // Router logic
-  const activeSectionDirName = $derived(route.params.sectionId);
-  const activeSnippetDirName = $derived(route.params.snippetId);
+  const activeSectionDirName = $derived(
+    (route.params as any).sectionId as string | undefined,
+  );
+  const activeSnippetDirName = $derived(
+    (route.params as any).snippetId as string | undefined,
+  );
 
   const currentSection = $derived(
     sections.find((s) => s.sectionDirName === activeSectionDirName),
@@ -202,14 +206,36 @@
   );
 
   $effect(() => {
-    // If root, redirect to first section
+    console.log("=== Redirect Effect ===");
+    console.log("activeSectionDirName:", activeSectionDirName);
+    console.log("activeSnippetDirName:", activeSnippetDirName);
+    console.log("sections.length:", sections.length);
+    console.log("BASE_PATH:", BASE_PATH);
+    console.log("route.pathname:", route.pathname);
+
+    // If root, redirect to first snippet with default frameworks
     if (!activeSectionDirName && sections.length > 0) {
-      navigate("/:sectionId", {
-        params: { sectionId: sections[0].sectionDirName },
-        replace: true,
-        search: route.search,
-      });
-      return;
+      const firstSection = sections[0];
+      const firstSnippet = snippets.find(
+        (s) => s.sectionDirName === firstSection.sectionDirName,
+      );
+      if (firstSnippet) {
+        const targetPath = `${BASE_PATH}/${firstSection.sectionDirName}/${firstSnippet.snippetDirName}`;
+        console.log("Redirecting to first snippet:", targetPath);
+        // 如果 URL 中没有框架参数，添加默认框架
+        const hasFrameworkParam = route.search[FRAMEWORK_IDS_FROM_URL_KEY];
+        (navigate as any)(targetPath, {
+          replace: true,
+          search: hasFrameworkParam
+            ? route.search
+            : {
+                ...route.search,
+                [FRAMEWORK_IDS_FROM_URL_KEY]:
+                  DEFAULT_FRAMEWORKS.join(FRAMEWORK_SEPARATOR),
+              },
+        });
+        return;
+      }
     }
 
     // If section but no snippet, redirect to first snippet of section
@@ -217,17 +243,17 @@
       const firstSnippet = snippets.find(
         (s) => s.sectionDirName === activeSectionDirName,
       );
+      console.log("First snippet:", firstSnippet);
       if (firstSnippet) {
-        navigate("/:sectionId/:snippetId", {
-          params: {
-            sectionId: activeSectionDirName,
-            snippetId: firstSnippet.snippetDirName,
-          },
+        const targetPath = `${BASE_PATH}/${activeSectionDirName}/${firstSnippet.snippetDirName}`;
+        console.log("Redirecting to first snippet:", targetPath);
+        (navigate as any)(targetPath, {
           replace: true,
           search: route.search,
         });
       }
     }
+    console.log("======================");
   });
   $effect(() => {
     // Force dark mode class on html element if theme is dark
@@ -391,7 +417,7 @@
                 data-testid="empty-state-message"
               >
                 <img
-                  src="./popper.svg"
+                  src="{BASE_PATH}/popper.svg"
                   alt="Programing Party logo"
                   class="size-6"
                   width="24"
@@ -399,7 +425,7 @@
                 />
                 <span> 请选择一个框架以查看代码片段 </span>
                 <img
-                  src="./popper.svg"
+                  src="{BASE_PATH}/popper.svg"
                   alt="Programing Party logo"
                   class="size-6"
                   width="24"

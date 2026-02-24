@@ -1,6 +1,6 @@
 <script lang="ts">
   import { sections, snippets } from "../generatedContent/tree.js";
-  import { navigate, isActive, route } from "../router.ts";
+  import { navigate, isActive, route, BASE_PATH } from "../router.ts";
 </script>
 
 <aside
@@ -10,7 +10,7 @@
     <ul class="space-y-4">
       {#each sections as section (section.sectionId)}
         {@const isSectionActive =
-          route.params.sectionId === section.sectionDirName}
+          (route.params as any).sectionId === section.sectionDirName}
         <li>
           <div
             class={[
@@ -32,10 +32,13 @@
             ></div>
 
             {#each snippets.filter((s: any) => s.sectionId === section.sectionId) as snippet (snippet.snippetId)}
-              {@const isSnippetActive = isActive("/:sectionId/:snippetId", {
-                sectionId: section.sectionDirName,
-                snippetId: snippet.snippetDirName,
-              })}
+              {@const isSnippetActive = (isActive as any)(
+                `${BASE_PATH}/:sectionId/:snippetId`,
+                {
+                  sectionId: section.sectionDirName,
+                  snippetId: snippet.snippetDirName,
+                },
+              )}
               <li>
                 <button
                   class={[
@@ -44,14 +47,14 @@
                       ? "bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400 font-medium"
                       : "text-gray-600 dark:text-gray-400 hover:bg-gray-200/50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-200",
                   ]}
-                  onclick={() =>
-                    navigate("/:sectionId/:snippetId", {
-                      params: {
-                        sectionId: section.sectionDirName,
-                        snippetId: snippet.snippetDirName,
+                  onclick={() => {
+                    (navigate as any)(
+                      `${BASE_PATH}/${section.sectionDirName}/${snippet.snippetDirName}`,
+                      {
+                        search: route.search,
                       },
-                      search: route.search,
-                    })}
+                    );
+                  }}
                 >
                   {snippet.title}
                 </button>

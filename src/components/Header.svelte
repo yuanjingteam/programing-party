@@ -1,5 +1,6 @@
 <script lang="ts">
   import ThemeSwitch from "./ThemeSwitch.svelte";
+  import { BASE_PATH } from "../router.ts";
 </script>
 
 <header
@@ -9,10 +10,10 @@
     <div class="flex justify-between items-center py-3">
       <a
         class="font-semibold text-lg flex items-center space-x-3 text-[var(--text-color)]"
-        href="/"
+        href="{BASE_PATH}/"
       >
         <img
-          src="/popper.svg"
+          src="{BASE_PATH}/popper.svg"
           alt="logo"
           class="size-6"
           width="20"
